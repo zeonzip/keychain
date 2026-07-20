@@ -1,0 +1,12 @@
+/Users/zeon/Desktop/Projects/Rust/keychain/target/release/deps/which-acf3821e98d699b2.d: /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/lib.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/checker.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/error.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/finder.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/helper.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/sys.rs
+
+/Users/zeon/Desktop/Projects/Rust/keychain/target/release/deps/libwhich-acf3821e98d699b2.rlib: /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/lib.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/checker.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/error.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/finder.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/helper.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/sys.rs
+
+/Users/zeon/Desktop/Projects/Rust/keychain/target/release/deps/libwhich-acf3821e98d699b2.rmeta: /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/lib.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/checker.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/error.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/finder.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/helper.rs /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/sys.rs
+
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/lib.rs:
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/checker.rs:
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/error.rs:
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/finder.rs:
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/helper.rs:
+/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/which-8.0.5/src/sys.rs:
