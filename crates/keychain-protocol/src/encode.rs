@@ -18,13 +18,11 @@ impl Decode for String {
     type Error = DecodeError;
 
     fn decode<W: Buf>(data: &mut W) -> Result<String, DecodeError> {
-        if data.remaining() < 4 {
-            return Err(DecodeError::UnexpectedEof);
-        }
+        check_len(data, 4)?;
+
         let buf_length = data.get_u32_le();
-        if data.remaining() < buf_length as usize {
-            return Err(DecodeError::MalformedLength);
-        }
+        check_len(data, buf_length as usize)?;
+
         let bytes = data.copy_to_bytes(buf_length as usize);
 
         Ok(String::from_utf8_lossy(&bytes).into_owned())
@@ -45,12 +43,24 @@ impl Decode for bool {
     where
         Self: Sized,
     {
-        Ok(data.get_u8() != 0)
+        check_len(data, 1)?;
+
+        Ok(data.get_u8() == 1)
     }
 }
 
 impl Encode for bool {
     fn encode<W: BufMut>(&self, buf: &mut W) {
         buf.put_u8(*self as u8);
+    }
+}
+
+
+#[inline]
+pub fn check_len<B: Buf>(buf: &B, bytes: usize) -> Result<(), DecodeError> {
+    if buf.remaining() < bytes {
+        Err(DecodeError::MalformedLength)
+    } else {
+        Ok(())
     }
 }

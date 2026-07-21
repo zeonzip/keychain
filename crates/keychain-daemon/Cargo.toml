@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 interprocess = { version = "2.4.2", features = ["async", "tokio"] }
 tokio = { version = "1.52.4", features = ["macros", "rt-multi-thread"] }
-keychain-protocol = { path="../keychain-protocol" }
+keychain-protocol = { path="../keychain-protocol", features=["tokio"] }
 bytes = "1.12.1"
 thiserror = "2.0.18"
 tracing = "0.1.44"
