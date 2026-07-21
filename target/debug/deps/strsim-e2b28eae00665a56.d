@@ -1,5 +1,0 @@
-/Users/zeon/Desktop/Projects/Rust/keychain/target/debug/deps/strsim-e2b28eae00665a56.d: /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/strsim-0.11.1/src/lib.rs
-
-/Users/zeon/Desktop/Projects/Rust/keychain/target/debug/deps/libstrsim-e2b28eae00665a56.rmeta: /Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/strsim-0.11.1/src/lib.rs
-
-/Users/zeon/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/strsim-0.11.1/src/lib.rs:
