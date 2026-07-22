@@ -1,5 +1,6 @@
 use bytes::{Buf, BufMut};
 use crate::error::DecodeError;
+use crate::ProtocolVersion;
 
 pub trait Encode {
     fn encode<W: BufMut>(&self, buf: &mut W);
@@ -52,6 +53,54 @@ impl Decode for bool {
 impl Encode for bool {
     fn encode<W: BufMut>(&self, buf: &mut W) {
         buf.put_u8(*self as u8);
+    }
+}
+
+impl Decode for u32 {
+    type Error = DecodeError;
+    
+    fn decode<W: Buf>(data: &mut W) -> Result<Self, Self::Error>
+    where
+        Self: Sized,
+    {
+        check_len(data, 4)?;
+
+        Ok(data.get_u32_le())
+    }
+}
+
+impl Encode for u32 {
+    fn encode<W: BufMut>(&self, buf: &mut W) {
+        buf.put_u32_le(*self);
+    }
+}
+
+impl Decode for ProtocolVersion {
+    type Error = DecodeError;
+
+    fn decode<W: Buf>(data: &mut W) -> Result<Self, Self::Error>
+    where
+        Self: Sized,
+    {
+        let major = u32::decode(data)?;
+        let minor = u32::decode(data)?;
+        let patch = u32::decode(data)?;
+        
+        Ok(
+            ProtocolVersion {
+                major,
+                minor,
+                patch,
+            }
+        )
+    }
+}
+
+impl Encode for ProtocolVersion {
+    fn encode<W: BufMut>(&self, buf: &mut W) {
+        self.major.encode(buf);
+        self.minor.encode(buf);
+        self.patch.encode(buf);
     }
 }
 

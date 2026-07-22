@@ -15,7 +15,7 @@ pub async fn handle_client(stream: AsyncStream) -> Result<(), ProtocolError> {
                 conn.send_packet(
                     &ServerPacket::Pong {
                         incompatible: !matches,
-                        version: VERSION.to_string()
+                        version: VERSION
                     }
                 ).await?;
 

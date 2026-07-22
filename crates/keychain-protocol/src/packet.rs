@@ -1,6 +1,7 @@
 use bytes::{Buf, BufMut};
 use crate::encode::{Decode, Encode};
 use crate::error::DecodeError;
+use crate::ProtocolVersion;
 
 pub trait PacketBodyCodec {
     fn decode_body<B: Buf>(buf: &mut B, opcode: u32) -> Result<Self, DecodeError>
@@ -10,7 +11,8 @@ pub trait PacketBodyCodec {
 }
 #[derive(Debug)]
 pub enum ClientPacket {
-    Ping(String),
+    // KEEP THIS PACKET TYPE (handshake) STABLE, IT IS SUPPOSED TO WORK ACROSS DIFFERENT VERSIONS
+    Ping(ProtocolVersion),
     ReqVault,
     Disconnect,
 }
@@ -19,7 +21,7 @@ impl PacketBodyCodec for ClientPacket {
     fn decode_body<B: Buf>(buf: &mut B, opcode: u32) -> Result<Self, DecodeError> {
         match opcode {
             0 => {
-                Ok(Self::Ping(String::decode(buf)?))
+                Ok(Self::Ping(ProtocolVersion::decode(buf)?))
             },
             1 => {
                 Ok(Self::ReqVault)
@@ -49,9 +51,10 @@ impl PacketBodyCodec for ClientPacket {
 
 #[derive(Debug)]
 pub enum ServerPacket {
+    // KEEP THIS PACKET TYPE (handshake) STABLE, IT IS SUPPOSED TO WORK ACROSS DIFFERENT VERSIONS
     Pong {
         incompatible: bool,
-        version: String,
+        version: ProtocolVersion,
     },
     DropConnection
 }
@@ -64,7 +67,7 @@ impl PacketBodyCodec for ServerPacket {
         match opcode {
             0 => {
                 let incompatible = bool::decode(buf)?;
-                let version = String::decode(buf)?;
+                let version = ProtocolVersion::decode(buf)?;
 
                 Ok(Self::Pong { incompatible, version })
             },
@@ -98,7 +101,7 @@ impl<D: PacketBodyCodec> Decode for D {
     where
         Self: Sized,
     {
-        let opcode = data.get_u32_le();
+        let opcode = u32::decode(data)?;
         let mut bytes = data.copy_to_bytes(data.remaining());
 
         let packet = D::decode_body(&mut bytes, opcode)?;
@@ -109,7 +112,7 @@ impl<D: PacketBodyCodec> Decode for D {
 
 impl<D: PacketBodyCodec> Encode for D {
     fn encode<W: BufMut>(&self, buf: &mut W) {
-        buf.put_u32_le(self.opcode());
+        self.opcode().encode(buf);
         self.encode_body(buf);
     }
 }

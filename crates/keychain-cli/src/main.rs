@@ -6,12 +6,13 @@ use interprocess::local_socket::traits::Stream;
 use termcolor::{ColorChoice, ColorSpec, StandardStream, WriteColor};
 use keychain_protocol::packet::{ClientPacket, ServerPacket};
 use keychain_protocol::stream::StreamConnection;
+use keychain_protocol::VERSION;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let stream = LocalStream::connect("keychain.sock".to_ns_name::<GenericNamespaced>().unwrap())?;
     let mut conn = StreamConnection::<LocalStream>::new(stream);
 
-    conn.send_packet(&ClientPacket::Ping("hello".to_string()))?;
+    conn.send_packet(&ClientPacket::Ping(VERSION))?;
 
     while let Ok(packet) = conn.read_packet::<ServerPacket>() {
         println!("{:?}", packet);
