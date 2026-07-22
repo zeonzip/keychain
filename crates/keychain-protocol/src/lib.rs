@@ -19,7 +19,8 @@ const fn parse_u32(bytes: &[u8], offset: usize) -> (u32, usize) {
 
     let mut i = 0;
     while offset + i < bytes.len() && bytes[offset + i].is_ascii_digit() {
-        value = (value & !(0xFF << (i * 8))) | ((bytes[offset + i] as u32) << (i * 8));
+        let digit = (bytes[offset + i] - b'0') as u32;
+        value = value * 10 + digit;
 
         i += 1;
     }
